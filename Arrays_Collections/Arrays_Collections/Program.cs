@@ -14,26 +14,16 @@ namespace Pluralsight.ArraysCollections.Demos
 
 			BusRoute[] routes = FindBusesTo(allRoutes, location);
 
-			if (routes.Length > 0 )
-				foreach ( BusRoute route in routes )
-				{
+			if (routes.Length > 0)
+				foreach (BusRoute route in routes)
 					Console.WriteLine($"You can use route {route}");
-				}
 			else
 				Console.WriteLine($"No routes go to {location}");
 		}
 
 		public static BusRoute[] FindBusesTo(BusRoute[] routes, string location)
 		{
-			return Array.FindAll(routes, 
-				route => route.Origin == location || route.Destination == location);
-
-			//foreach (BusRoute route in routes)
-			//{
-			//	if (route.Origin == location || route.Destination == location)
-			//		return route;
-			//}
-			//return null;
+			return Array.FindAll(routes, route => route.Serves(location));
 		}
 	}
 }
