@@ -8,7 +8,7 @@ namespace Pluralsight.ArraysCollections.Demos
 {
 	public class BusRouteRepository
 	{
-		public static Dictionary<int, BusRoute> InitializeRoutes()
+		public static SortedDictionary<int, BusRoute> InitializeRoutes()
 		{
 
 			BusRoute route42 = new BusRoute(42, new string[] { "Lancaster", "Garstang", "Blackpool" });
@@ -19,16 +19,15 @@ namespace Pluralsight.ArraysCollections.Demos
 					"Lancaster", "Carnforth", "Kendal", "Windermere", "Keswick" });
 			BusRoute route5 = new BusRoute(5, new string[] { "Overton", "Morecambe", "Carnforth" });
 
-			var routes = new Dictionary<int, BusRoute>
-			{
-				{ 42, route42 },
-				{ 40, route40 },
-				{ 100, route100 },
-				{ 555, route555 },
-				{ 5, route5 }
-			};
-			return routes;
+            var routes = new SortedDictionary<int, BusRoute>
+            {
+                { 42, route42 },
+                { 40, route40 },
+                { 100, route100 },
+                { 555, route555 },
+                { 5, route5 }
+            };
+            return routes;
 		}
-
 	}
 }
