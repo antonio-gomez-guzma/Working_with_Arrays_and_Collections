@@ -11,26 +11,32 @@ namespace Pluralsight.ArraysCollections.Demos
         public const int Capacity = 5;
         public int Space { get => Capacity - _passengers.Count; }
 
-        private Stack<Passenger> _passengers = new Stack<Passenger>();
+        private List<Passenger> _passengers = new List<Passenger>();
         public bool Load(Passenger passenger)
         {
             if (Space < 1)
                 return false;
 
-            _passengers.Push(passenger);
+            _passengers.Add(passenger);
             Console.WriteLine($"{passenger} got on the bus");
             return true;
         }
-        public void ArriveAtTerminus()
+        public void ArriveAt(string place)
         {
-            Console.WriteLine($"\r\nBus arriving at terminus");
-            while (_passengers.Count > 0)
-            {
-                Passenger passenger = _passengers.Pop();
-                Console.WriteLine($"{passenger} got off the bus");
-            }
+            Console.WriteLine($"\r\nBus arriving at {place}");
+            if (_passengers.Count == 0)
+                return;
 
-            Console.WriteLine($"There are {_passengers.Count} people still on the bus");
+            // need to remove passengers who want to get off here from the list
+            // complicated by that you need to display them too
+            // I would go for this solution:            
+            List<Passenger> passengersToRemove = _passengers.FindAll(x => x.Destination == place);
+            _passengers.RemoveAll(x => x.Destination == place);
+
+            foreach (Passenger passenger in passengersToRemove)
+                Console.WriteLine($"{passenger} is getting off");
+
+            Console.WriteLine($"{_passengers.Count} people left on the bus");
         }
     }
 }
