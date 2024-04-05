@@ -14,6 +14,8 @@ namespace Pluralsight.ArraysCollections.Demos
 				busStop.PersonArrive(PassengerGenerator.CreatePassenger());
 
 			busStop.BusArrive(bus);
+
+			bus.ArriveAtTerminus();
 		}
 	}
 }
