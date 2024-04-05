@@ -11,13 +11,13 @@ namespace Pluralsight.ArraysCollections.Demos
         public const int Capacity = 5;
         public int Space { get => Capacity - _passengers.Count; }
 
-        private LinkedList<Passenger> _passengers = new LinkedList<Passenger>();
+        private List<Passenger> _passengers = new List<Passenger>();
         public bool Load(Passenger passenger)
         {
             if (Space < 1)
                 return false;
 
-            _passengers.AddLast(passenger);
+            _passengers.Add(passenger);
             Console.WriteLine($"{passenger} got on the bus");
             return true;
         }
@@ -27,16 +27,15 @@ namespace Pluralsight.ArraysCollections.Demos
             if (_passengers.Count == 0)
                 return;
 
-            LinkedListNode<Passenger> currentNode = _passengers.First;
-            do{
-                LinkedListNode<Passenger> nextNode = currentNode.Next;
-                if (currentNode.Value.Destination == place)
-                {
-                    Console.WriteLine($"{currentNode.Value} is getting off");
-                    _passengers.Remove(currentNode);
-                }
-                currentNode = nextNode;
-            } while (currentNode != null);
+            // need to remove passengers who want to get off here from the list
+            // complicated by that you need to display them too
+            // I would go for this solution:            
+            List<Passenger> passengersToRemove = _passengers.FindAll(x => x.Destination == place);
+            _passengers.RemoveAll(x => x.Destination == place);
+
+            foreach (Passenger passenger in passengersToRemove)
+                Console.WriteLine($"{passenger} is getting off");
+
             Console.WriteLine($"{_passengers.Count} people left on the bus");
         }
     }
