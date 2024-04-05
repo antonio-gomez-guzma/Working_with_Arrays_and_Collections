@@ -15,7 +15,8 @@ namespace Pluralsight.ArraysCollections.Demos
 
 			busStop.BusArrive(bus);
 
-			bus.ArriveAtTerminus();
+			bus.ArriveAt("Lancaster");
+			bus.ArriveAt("Morecambe");
 		}
 	}
 }
