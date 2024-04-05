@@ -21,11 +21,20 @@ namespace Pluralsight.ArraysCollections.Demos
 				new BusRoute(5, new string[] { "Overton", "Morecambe", "Carnforth"})
 			};
 
-			string[,] timesRoute5 = 
-			{
-				{ "15:40", "16:40", "17:40", "18:40" },
-				{ "16:08", "17:08", "18:08", "19:08" },
-				{ "16:35", "17:35", "18:35", "19:35" }
+			//string[,] timesRoute5 = 
+			//{
+			//	{ "15:40", "16:40", "17:40", "18:40" },
+			//	{ "16:08", "17:08", "18:08", "19:08" },
+			//	{ "16:35", "17:35", "18:35", "19:35" }
+			//};
+
+			// Note this is demo-ing jagged arrays, but this code here would be
+			// problematic if you have a journey that isn't the last journey
+			// not serving all places
+			string[][] timesRoute5 = {
+				new string[] { "15:40", "16:40", "17:40", "18:40", "19:40" },
+				new string[] { "16:08", "17:08", "18:08", "19:08", "20:08" },
+				new string[] { "16:35", "17:35", "18:35", "19:35" }
 			};
 			BusTimesRoute5 = new BusTimes(
 				Array.Find(_allRoutes, x => x.Number == 5), timesRoute5);
